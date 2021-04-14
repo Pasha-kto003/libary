@@ -9,6 +9,7 @@ namespace libary
 {
     public class VMBooks : INotifyPropertyChanged
     {
+        //сделать переход на новую страницу
         Db db;
         public ObservableCollection<Book> Books { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
@@ -17,7 +18,7 @@ namespace libary
         public DateTime PublishDate { get; set; }
         private Author selectedAutor;
         private Book selectedBook;
-        public Book Book { get; set; }
+       
         public Author SelectedAutor 
         {
             get => selectedAutor;
@@ -50,7 +51,9 @@ namespace libary
                 var book = new Book { Name = "Название" };
                 db.Books.Add(book);
                 LoadBooks();
+                SelectedBook = book;
             });
+
             SaveBooks = new CustomCommand(() =>
             {
                 try

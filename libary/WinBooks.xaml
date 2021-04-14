@@ -24,8 +24,6 @@
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Дата публикации" DisplayMemberBinding="{Binding PublishDate}"/>
-                    <GridViewColumn Header="Издательство" DisplayMemberBinding="{Binding Book.Publisher}"/>
-                    <GridViewColumn Header="Жанр" DisplayMemberBinding="{Binding Book.Genre}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -36,8 +34,6 @@
             <TextBox Text="{Binding SelectedBook.Name}"/>
             <TextBlock Text="Дата публикации"/>
             <TextBox Text="{Binding SelectedBook.PublishDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
-            <TextBlock Text="Жанр"/>
-            <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding SelectedGenre}" DisplayMemberPath="Name"/>
         </StackPanel>
         <Button Grid.Row="2" Grid.Column="1" Content="Сохранить изменения" Command="{Binding SaveBooks}"/>
         <StackPanel Grid.Row="2">

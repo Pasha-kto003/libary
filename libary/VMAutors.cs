@@ -42,6 +42,7 @@ namespace libary
                 SelectedAutor = autor;
                 LoadAutors();
             });
+
             SaveAutors = new CustomCommand(() =>
             {
                 try

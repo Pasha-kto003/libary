@@ -13,14 +13,16 @@ namespace libary
         private Genre selectedGenre;
         public Genre SelectedGenre { get => selectedGenre; set { selectedGenre = value; SignalChanged(); } }
         public ObservableCollection<Genre> Genres { get; set; }
+        public ObservableCollection<Author> Authors { get; set; }
         public CustomCommand AddGenre { get; set; }
         public CustomCommand SaveGenres { get; set; }
-
+        private Author selectedAutor;
+        public Author SelectedAutor { get => selectedAutor; set { selectedAutor = value; SignalChanged(); } }
         public VMGenre()
-        {
+        {            
             db = Db.GetDb();
             LoadGenres();
-
+            Authors = new ObservableCollection<Author>(db.Authors);
             AddGenre = new CustomCommand(() =>
             {
                 SelectedGenre = new Genre { Name = "Название" };

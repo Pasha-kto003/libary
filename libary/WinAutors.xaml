@@ -18,7 +18,7 @@
             <RowDefinition Height="350"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Студенты"/>
+        <TextBlock Text="Авторы"/>
         <ListView Grid.Row="1" ItemsSource="{Binding Autors}" SelectedItem="{Binding SelectedAutor}">
             <ListView.View>
                 <GridView>
@@ -26,6 +26,7 @@
                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding SecondName}"/>
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
                     <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Birthday}"/>
+                    <GridViewColumn Header="Книги" DisplayMemberBinding="{Binding Books}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -39,8 +40,8 @@
             <TextBox Text="{Binding SelectedAutor.LastName}"/>
             <TextBlock Text="День Рождения"/>
             <TextBox Text="{Binding SelectedAutor.Birthday, StringFormat='{}{0:dd.MM.yyyy}'}"/>
-            <ComboBox ItemsSource="{Binding Books}" 
-                      SelectedItem="{Binding SelectedBook}">
+            <TextBlock Text="Книги"/>
+            <ComboBox ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook}" DisplayMemberPath="Name">
             </ComboBox>
         </StackPanel>
         <Button  Grid.Row="2" Grid.Column="1" Content="Сохранить изменения" Command="{Binding SaveAutors}"/>
