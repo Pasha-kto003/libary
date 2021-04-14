@@ -1,0 +1,49 @@
+﻿<Page x:Class="libary.WinAutors"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:libary"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
+      Title="WinAutors">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Студенты"/>
+        <ListView Grid.Row="1" ItemsSource="{Binding Autors}" SelectedItem="{Binding SelectedAutor}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding SecondName}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Birthday}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Column="1" Text="Редактирование Автора"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Имя"/>
+            <TextBox Text="{Binding SelectedAutor.FirstName}"/>
+            <TextBlock Text="Отчество"/>
+            <TextBox Text="{Binding SelectedAutor.SecondName}"/>
+            <TextBlock Text="Фамилия"/>
+            <TextBox Text="{Binding SelectedAutor.LastName}"/>
+            <TextBlock Text="День Рождения"/>
+            <TextBox Text="{Binding SelectedAutor.Birthday, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+            <ComboBox ItemsSource="{Binding Books}" 
+                      SelectedItem="{Binding SelectedBook}">
+            </ComboBox>
+        </StackPanel>
+        <Button  Grid.Row="2" Grid.Column="1" Content="Сохранить изменения" Command="{Binding SaveAutors}"/>
+        <Button Grid.Row="2" Content="Добавить Автора" Command="{Binding AddAutor}"/>
+    </Grid>
+</Page>
