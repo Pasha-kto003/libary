@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Наименование"/>
@@ -26,20 +27,18 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="254*" />
-                <ColumnDefinition Width="146*"/>
-                <ColumnDefinition Width="71*" />
-                <ColumnDefinition Width="329*"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.ColumnSpan="4" Text="Редактирование жанров" Margin="0,0,0,151" Grid.RowSpan="2"/>
+            <TextBlock Grid.ColumnSpan="2" Text="Редактирование жанров"/>
             <ListBox Grid.Row="1" ItemsSource="{Binding SelectedBookGenres}"
-                     SelectedItem="{Binding SelectedGenreInBook}"
-                     DisplayMemberPath="Name" Grid.ColumnSpan="2"/>
-            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                     SelectedItem="{Binding SelectedGenre}"
+                     DisplayMemberPath="Name"/>
+            <StackPanel Grid.Row="1" Grid.Column="1">
                 <TextBlock Text="Выбор жанра"/>
                 <ComboBox ItemsSource="{Binding Genres}" 
                           SelectedItem="{Binding SelectedGenre}"
@@ -48,5 +47,38 @@
                 <Button Content="Удалить" Command="{Binding RemoveGenre}"/>
             </StackPanel>
         </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Редактирование авторов"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding SelectedBookAuthors}" SelectedItem="{Binding SelectedAuthor}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}"/>
+                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding SecondName}"/>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Birthday, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Выбор автора"/>
+                <ComboBox ItemsSource="{Binding Authors}" 
+                          SelectedItem="{Binding SelectedAuthor}"
+                          DisplayMemberPath="LastName"/>
+                <Button Content="Добавить" Command="{Binding AddAuthor}"/>
+                <Button Content="Удалить" Command="{Binding RemoveAuthor}"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Вернуться к списку книг" Command="{Binding OpenListBooks}" />
+            <Button Content="Сохранить изменения" Command="{Binding SaveSelectedBook}" />
+        </StackPanel>
     </Grid>
 </Page>

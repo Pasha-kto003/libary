@@ -17,6 +17,7 @@
                     <MenuItem Header="Авторы" Command="{Binding OpenAutors}"/>
                     <MenuItem Header="Книги" Command="{Binding OpenBooks}"/>
                     <MenuItem Header="Издательства" Command="{Binding OpenPublishers}"/>
+                    <MenuItem Header="Редактирование книг" Command="{Binding OpenBooksEdit}"/>
                 </MenuItem>
                 <MenuItem Header="Список">
                     <MenuItem Header="Список Жанров" Command="{Binding OpenGenres}"/>

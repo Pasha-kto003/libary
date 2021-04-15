@@ -18,9 +18,15 @@ namespace libary
     /// </summary>
     public partial class BookEdit : Page
     {
+        public BookEdit(Book book)
+        {
+            InitializeComponent();
+            DataContext = new VMBooksEdit(book);
+        }
         public BookEdit()
         {
             InitializeComponent();
+            DataContext = new VMBooksEdit();
         }
     }
 }

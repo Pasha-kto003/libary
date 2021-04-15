@@ -11,7 +11,13 @@ namespace libary
     public class MainVM : INotifyPropertyChanged
     {
         Db db;
-        public Page CurrentPage { get; set; }
+        private Page currentPage;
+
+        public Page CurrentPage
+        {
+            get => currentPage;
+            set { currentPage = value; SignalChanged("CurrentPage"); }
+        }
         public ObservableCollection<Author> Authors { get; set; }
         public ObservableCollection<Book> Books { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
@@ -21,16 +27,17 @@ namespace libary
         public CustomCommand OpenBooks { get; set; }
         public CustomCommand OpenPublishers { get; set; }
         public CustomCommand OpenGenres { get; set; }
+        public CustomCommand OpenBooksEdit { get; set; }
 
         public MainVM()
         {
             db = Db.GetDb();
             Genres = new ObservableCollection<Genre>(db.Genres);
-            OpenAutors = new CustomCommand(() => { CurrentPage = new WinAutors(); SignalChanged("CurrentPage"); });
-            OpenBooks = new CustomCommand(() => { CurrentPage = new WinBooks(); SignalChanged("CurrentPage"); });
-            OpenPublishers = new CustomCommand(() => { CurrentPage = new WinPublishers(); SignalChanged("CurrentPage"); });
-            OpenGenres = new CustomCommand(() => { CurrentPage = new WinGenre(); SignalChanged("CurrentPage"); });
-            
+            OpenAutors = new CustomCommand(() => { CurrentPage = new WinAutors();  });
+            OpenBooks = new CustomCommand(() => { CurrentPage = new WinBooks(this); });
+            OpenPublishers = new CustomCommand(() => { CurrentPage = new WinPublishers(); });
+            OpenGenres = new CustomCommand(() => { CurrentPage = new WinGenre(); });
+            OpenBooksEdit = new CustomCommand(() => { CurrentPage = new BookEdit(); });
         }
 
         void SignalChanged([CallerMemberName] string prop = null) =>

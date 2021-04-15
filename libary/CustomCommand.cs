@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 
 namespace libary
 {
-    public class CustomCommand: ICommand
+    public class CustomCommand: ICommand, INotifyPropertyChanged
     {
         Action action;
 
@@ -24,6 +26,12 @@ namespace libary
         public void Execute(object parameter)
         {
             action();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void SignalChanged([CallerMemberName] string prop = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

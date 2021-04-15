@@ -9,35 +9,21 @@
       Title="WinBooks">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="Книги"/>
+        <Menu>
+            <MenuItem Header="Добавить книгу" Command="{Binding AddBook}"/>
+            <MenuItem Header="Редактировать выбранную книгу" Command="{Binding EditBook}"/>
+        </Menu>
         <ListView Grid.Row="1" ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Дата публикации" DisplayMemberBinding="{Binding PublishDate}"/>
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Дата выпуска" DisplayMemberBinding="{Binding PublishDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock Grid.Column="1" Text="Редактирование книги"/>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical"/>
-            <TextBlock Text="Название"/>
-            <TextBox Text="{Binding SelectedBook.Name}"/>
-            <TextBlock Text="Дата публикации"/>
-            <TextBox Text="{Binding SelectedBook.PublishDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
-        </StackPanel>
-        <Button Grid.Row="2" Grid.Column="1" Content="Сохранить изменения" Command="{Binding SaveBooks}"/>
-        <StackPanel Grid.Row="2">
-            <Button Content="Добавить книгу" Command="{Binding AddBook}"/>
-        </StackPanel>
     </Grid>
 </Page>

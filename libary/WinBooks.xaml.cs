@@ -18,10 +18,10 @@ namespace libary
     /// </summary>
     public partial class WinBooks : Page
     {
-        public WinBooks()
+        public WinBooks(MainVM mainVM)
         {
             InitializeComponent();
-            DataContext = new VMBooks();
+            DataContext = new VMBooks(mainVM);
         }
     }
 }

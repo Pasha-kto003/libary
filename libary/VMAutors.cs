@@ -37,7 +37,7 @@ namespace libary
             db = Db.GetDb();
             AddAutor = new CustomCommand(() =>
             {
-                var autor = new Author { FirstName = "Имя", LastName = "Фамилия" };
+                var autor = new Author { FirstName = "Имя", LastName = "Фамилия", SecondName = "Отчество" };
                 db.Authors.Add(autor);
                 SelectedAutor = autor;
                 LoadAutors();
