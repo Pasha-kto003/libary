@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Controls;
 
 namespace libary
 {
@@ -15,7 +16,7 @@ namespace libary
         private Author selectedAuthor;
         private Genre selectedGenre;
         private readonly MainVM mainVM;
-
+        public Page CurrentPage { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Book SelectedBook
@@ -78,6 +79,7 @@ namespace libary
             Genres = new List<Genre>(db.Genres);
             Authors = new List<Author>(db.Authors);
 
+            OpenListBooks = new CustomCommand(() => { CurrentPage = new WinBooks(mainVM); });
             AddGenre = new CustomCommand(() =>
             {
                 SelectedBook.Genres.Add(SelectedGenre);
@@ -99,9 +101,17 @@ namespace libary
                 SelectedBook.Authors.Remove(SelectedAuthor);
                 SignalChanged("SelectedBookAuthors");
             });
+
             SaveSelectedBook = new CustomCommand(() =>
             {
-               db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
             });
         }
 
