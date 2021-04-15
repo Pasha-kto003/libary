@@ -41,12 +41,12 @@ namespace libary
                 SelectedBook = book;
             });
 
-            //EditBook = new CustomCommand(() =>
-            //{
-            //    var booklist = new Book();
-            //    mainVM.CurrentPage = new BookEdit(booklist);
-            //    SelectedBook = booklist;
-            //});
+            EditBook = new CustomCommand(() =>
+            {
+                var booklist = new Book();
+                mainVM.CurrentPage = new BookEdit(booklist);
+                SelectedBook = booklist;
+            });
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

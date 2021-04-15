@@ -68,9 +68,9 @@ namespace libary
         public CustomCommand RemoveGenre { get; set; }
         public CustomCommand AddAuthor { get; set; }
         public CustomCommand RemoveAuthor { get; set; }
-
         public CustomCommand OpenListBooks { get; set; }
         public CustomCommand SaveSelectedBook { get; set; }
+
         public VMBooksEdit()
         {
             db = Db.GetDb();
@@ -80,11 +80,13 @@ namespace libary
             Authors = new List<Author>(db.Authors);
 
             OpenListBooks = new CustomCommand(() => { CurrentPage = new WinBooks(mainVM); });
+
             AddGenre = new CustomCommand(() =>
             {
                 SelectedBook.Genres.Add(SelectedGenre);
                 SignalChanged("SelectedBookGenres");
             });
+
             RemoveGenre = new CustomCommand(() =>
             {
                 SelectedBook.Genres.Remove(SelectedGenre);
@@ -96,6 +98,7 @@ namespace libary
                 SelectedBook.Authors.Add(SelectedAuthor);
                 SignalChanged("SelectedBookAuthors");
             });
+
             RemoveAuthor = new CustomCommand(() =>
             {
                 SelectedBook.Authors.Remove(SelectedAuthor);
