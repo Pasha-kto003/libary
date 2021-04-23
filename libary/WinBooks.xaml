@@ -22,9 +22,6 @@
                 <GridView>
                     <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Дата выпуска" DisplayMemberBinding="{Binding PublishDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
-                    <GridViewColumn Header="Жанр" DisplayMemberBinding="{Binding Genre}"/>
-                    <GridViewColumn Header="Издательство" DisplayMemberBinding="{Binding Publisher}"/>
-                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
                 </GridView>
             </ListView.View>
         </ListView>
